@@ -6,12 +6,20 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = "catppuccin",
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+	hl_override = {
+		Comment = { italic = true },
+		["@comment"] = { italic = true },
+	},
+}
+
+M.mason = {
+  ensure_installed = {
+    "lua-language-server",
+    "typescript-language-server",
+    "prettier",
+  }
 }
 
 -- M.nvdash = { load_on_startup = true }
