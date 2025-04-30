@@ -2,7 +2,6 @@ return {
   "echasnovski/mini.nvim",
   version = "*",
   config = function()
-  
     require("mini.ai").setup()
     require("mini.comment").setup()
     require("mini.move").setup()
@@ -14,23 +13,23 @@ return {
     require("mini.cursorword").setup()
     require("mini.map").setup()
     require("mini.indentscope").setup()
-    require("mini.animate").setup({
-      cursor = {
-        enable = false,
-      },
-      scroll = {
-        enable = true,
-      },
-      resize = {
-        enable = false,
-      },
-      open = {
-        enable = true,
-      },
-      close = {
-        enable = true,
-      },
-    })
+    -- require("mini.animate").setup({
+    --   cursor = {
+    --     enable = false,
+    --   },
+    --   scroll = {
+    --     enable = true,
+    --   },
+    --   resize = {
+    --     enable = false,
+    --   },
+    --   open = {
+    --     enable = true,
+    --   },
+    --   close = {
+    --     enable = true,
+    --   },
+    -- })
   end,
   lazy = false,
 }
