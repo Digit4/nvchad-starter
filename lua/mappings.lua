@@ -2,16 +2,56 @@ require "nvchad.mappings"
 local snipe = require "snipe"
 local harpoon = require "harpoon"
 -- local blink = require "blink"
+local telescope_builtin = require "telescope.builtin"
 
 -- add yours here
 
 local map = vim.keymap.set
+local del = vim.keymap.del
 
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "<A-CR>", "<End><CR>", { desc = "C-CR moves the cursor to new line" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- silence nvchad's inbuilt mappingsfor code actions and references
+del("n", "gra") -- removed code actions
+del("n", "grr") -- removed goto references
+del("n", "gri") -- removed goto implementations
+del("n", "grn") -- removed rename(grn doesn't make sense)
+del("n", "<leader>rn") -- removed toggling relative numbers
+
+-- added personalized versions of deleted mappings above.
+map("n", "gr", function()
+  telescope_builtin.lsp_references {
+    entry_maker = function(entry)
+      local filename = vim.fn.fnamemodify(entry.filename, ":t") -- just the file name
+      local line = entry.lnum or 0
+      local raw_text = entry.text or ""
+
+      local cleaned_text = raw_text:gsub("^%s+", ""):gsub("%s+$", "")
+
+      return {
+        value = entry,
+        display = string.format("%s:%d → %s", filename, line, cleaned_text),
+        ordinal = filename .. " " .. cleaned_text,
+        filename = entry.filename,
+        lnum = line,
+        col = entry.col,
+        bufnr = entry.bufnr,
+      }
+    end,
+  }
+end, { noremap = true, silent = true, desc = "Goto [R]eferences" })
+map("n", "gI", function()
+  telescope_builtin.lsp_implementations()
+end, { noremap = true, silent = true, desc = "Goto [I]mplementations" })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+map("v", "<leader>ca", function()
+  vim.lsp.buf.range_code_action()
+end, { desc = "Code actions for selected text", noremap = true, silent = true })
 
 harpoon:setup()
 
@@ -70,3 +110,5 @@ end, { desc = "Open Snipe buffer menu" })
 
 -- blink opts
 -- blink.select_next
+
+-- map("n", "<leader>fk", require("conform").format { async = true, lsp_format = "fallback" }, { desc = "Format Buffer" })
