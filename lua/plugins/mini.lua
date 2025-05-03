@@ -11,7 +11,7 @@ return {
     require("mini.hipatterns").setup()
     require("mini.sessions").setup()
     require("mini.cursorword").setup()
-    require("mini.map").setup()
+    -- require("mini.map").setup()
     require("mini.indentscope").setup()
     -- require("mini.animate").setup({
     --   cursor = {
