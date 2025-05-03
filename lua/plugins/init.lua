@@ -32,17 +32,51 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "typescript",
-        "javascript",
-      },
-    },
+    build = ":TSUpdate",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    config = function()
+      local treesitter = require "nvim-treesitter.configs"
+
+      treesitter.setup {
+        highlight = {
+          enable = true,
+        },
+        indent = { enable = true },
+        context_commentstring = {
+          enable = true,
+        },
+        ensure_installed = {
+          "vim",
+          "lua",
+          "luadoc",
+          "vimdoc",
+          "html",
+          "css",
+          "rust",
+          "typescript",
+          "javascript",
+          "tsx",
+          "json",
+          "prisma",
+          "gitignore",
+          "markdown",
+          "markdown_inline",
+          "dockerfile",
+          "graphql",
+          "query",
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "+",
+            node_incremental = "+",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+          },
+        },
+      }
+    end,
   },
   {
     "williamboman/mason.nvim",
