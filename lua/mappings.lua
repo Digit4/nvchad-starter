@@ -53,6 +53,16 @@ map("v", "<leader>ca", function()
   vim.lsp.buf.range_code_action()
 end, { desc = "Code actions for selected text", noremap = true, silent = true })
 
+-- remove diagnostic loclist
+del("n", "<leader>ds") -- removed diagnostic loclist
+
+-- moved the diagnostic loclist to di
+map("n", "<leader>di", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+vim.keymap.set("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope document symbols" })
+vim.keymap.set("n", "<leader>ws", function()
+  require("telescope.builtin").lsp_dynamic_workspace_symbols()
+end, { desc = "Telescope document symbols" })
+
 harpoon:setup()
 
 vim.keymap.set("n", "<leader>a", function()
