@@ -10,12 +10,14 @@ local options = {
     typescriptreact = { "prettierd" },
   },
 
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 10000,
-    -- async = true,
-    lsp_fallback = true,
-  },
+  format_on_save = false,
+  -- {
+  --   -- These options will be passed to conform.format()
+  --   enable = false,
+  --   timeout_ms = 10000,
+  --   -- async = true,
+  --   lsp_fallback = true,
+  -- },
 }
 
 return options
