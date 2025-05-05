@@ -5,6 +5,7 @@ local options = {
     css = { "prettierd" },
     html = { "prettierd" },
     javascript = { "prettierd" },
+    json = { "prettierd" },
     javascriptreact = { "prettierd" },
     typescript = { "prettierd" },
     typescriptreact = { "prettierd" },
