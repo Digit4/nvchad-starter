@@ -19,7 +19,7 @@ vim.opt.scrolloff = 10
 
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
-vim.opt.fileenconding = "utf-8"
+-- vim.opt.fileenconding = "utf-8"
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
