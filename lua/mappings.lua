@@ -58,10 +58,15 @@ del("n", "<leader>ds") -- removed diagnostic loclist
 
 -- moved the diagnostic loclist to di
 map("n", "<leader>di", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
-vim.keymap.set("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope document symbols" })
-vim.keymap.set("n", "<leader>ws", function()
+map("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope document symbols" })
+map("n", "<leader>ws", function()
   require("telescope.builtin").lsp_dynamic_workspace_symbols()
 end, { desc = "Telescope document symbols" })
+map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
+map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close Tab" })
+map("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "Close Other Tabs" })
+map("n", "<leader>tt", "<cmd>tabnext<CR>", { desc = "Next Tab" })
+map("n", "<leader>tp", "<cmd>tabprevious<CR>", { desc = "Previous Tab" })
 
 harpoon:setup()
 
