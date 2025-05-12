@@ -62,6 +62,8 @@ map("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Tele
 map("n", "<leader>ws", function()
   require("telescope.builtin").lsp_dynamic_workspace_symbols()
 end, { desc = "Telescope document symbols" })
+
+-- tab related mappings
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
 map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close Tab" })
 map("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "Close Other Tabs" })
