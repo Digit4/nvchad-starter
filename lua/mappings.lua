@@ -63,6 +63,12 @@ map("n", "<leader>ws", function()
   require("telescope.builtin").lsp_dynamic_workspace_symbols()
 end, { desc = "Telescope document symbols" })
 map("n", "<leader>fr", telescope_builtin.resume, { desc = "resume previous search" })
+map(
+  "n",
+  "<leader>cq",
+  ":lua vim.diagnostic.setqflist({open=true, bufnr=0})<CR>",
+  { noremap = true, silent = true, desc = "open diagnostics in quickfix list" }
+)
 
 -- tab related mappings
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
